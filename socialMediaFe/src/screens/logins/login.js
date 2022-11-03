@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {user_login} from '../../api/UserApi';
 import React, {useState} from 'react';
 import {
   Image,
@@ -15,7 +17,19 @@ export default function Login({navigation}) {
   const [seePassword, setSeePassword] = useState(true);
 
   const handleLogin = () => {
-    return null;
+    user_login({
+      username: username.toLowerCase(),
+      password: password,
+    })
+      .then(result => {
+        if (result.status === 200) {
+          AsyncStorage.setItem('AccessToken', result.data.access_token);
+          navigation.replace('Home');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   return (

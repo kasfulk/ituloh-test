@@ -6,7 +6,7 @@ export default function Splash({navigation}) {
   useEffect(() => {
     setTimeout(() => {
       handleGetToken();
-    });
+    }, 2000);
   });
 
   const handleGetToken = async () => {
