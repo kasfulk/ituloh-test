@@ -21,6 +21,7 @@ export class AuthController {
         email: result.data.email,
       });
       return {
+        matched: result.matched,
         data: result.data,
         ...token,
       };

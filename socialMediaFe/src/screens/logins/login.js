@@ -22,9 +22,11 @@ export default function Login({navigation}) {
       password: password,
     })
       .then(result => {
-        if (result.status === 200) {
+        if (result.status === 201 && result.data.matched) {
           AsyncStorage.setItem('AccessToken', result.data.access_token);
           navigation.replace('Home');
+        } else {
+          alert(result.data.message);
         }
       })
       .catch(err => {
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#444444',
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 20,
+    padding: 20,
   },
   wrapperInput: {
     borderWidth: 0.5,

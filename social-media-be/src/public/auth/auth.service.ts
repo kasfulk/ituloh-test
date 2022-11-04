@@ -19,7 +19,7 @@ export class AuthService {
         username,
       },
     });
-    if (!usersData.id) {
+    if (!usersData?.id) {
       return {
         matched: false,
         message: 'User not Found',
